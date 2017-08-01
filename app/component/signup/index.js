@@ -3,26 +3,26 @@ import {
     AppRegistry,
     StyleSheet,
     View,
-    Image,
-    AsyncStorage
+    Image
 } from 'react-native';
-import {Actions} from "react-native-router-flux";
+import { Actions } from "react-native-router-flux";
+
 import { Container, Header, Form, Thumbnail, Item, Input, Label, Title, Content, Button, Left, Right, Body, Icon, Text } from 'native-base';
 
-export default class Login extends Component {
+export default class Signup extends Component {
     state = {
-            email:"",
-            password:""
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: ""
     }
-    login = () => alert(this.state.email)
-    
     render() {
         return (
             <Container>
                 <Header style={Style.headerStyle}>
                     <Left>
-                        <Button transparent>
-                            <Icon name='menu' />
+                        <Button transparent onPress={() => Actions.pop()}>
+                            <Icon name='arrow-back' />
                         </Button>
                     </Left>
                     <Body>
@@ -38,32 +38,33 @@ export default class Login extends Component {
                             />
                             <Form style={Style.loginContainer}>
                                 <Item floatingLabel>
-                                    <Label style={Style.loginContainer}>Email</Label>
-                                    <Input onChangeText={(value)=>this.setState({email:value})}/>
+                                    <Label style={Style.loginContainer}>First Name</Label>
+                                    <Input onChangeText={(value) => this.setState({ firstName: value })} />
                                 </Item>
                                 <Item floatingLabel>
-                                    <Label>Password</Label>
-                                    <Input  onChangeText={(value)=>this.setState({password:value})} secureTextEntry/>
+                                    <Label>Last Name</Label>
+                                    <Input onChangeText={(value) => this.setState({ lastName: value })} />
                                 </Item>
-                                <Button style={Style.loginButton} onPress={()=>this.login()} full info>
-                                    <Text>Login</Text>
+                                <Item floatingLabel>
+                                    <Label style={Style.loginContainer}>Email</Label>
+                                    <Input onChangeText={(value) => this.setState({ email: value })} />
+                                </Item>
+                                <Item floatingLabel>
+                                    <Label style={Style.loginContainer}>Password</Label>
+                                    <Input secureTextEntry onChangeText={(value) => this.setState({ password: value })} />
+                                </Item>
+                                <Button style={Style.loginButton} full info>
+                                    <Text>Register</Text>
                                 </Button>
                             </Form>
-                                <Text onPress={()=>Actions.signup()} style={Style.notlogged}>
-                                    No account yet? Create one
-                                </Text>
                         </View>
                     </Content>
                 </Image>
             </Container>
-
         );
     }
 }
 const Style = {
-    headerStyle:{
-        backgroundColor:"#22a3d7"
-    },
     imageThumbnail: {
         width: 200,
         height: 200
@@ -72,21 +73,20 @@ const Style = {
         justifyContent: 'center',
         alignItems: 'center',
     },
+    headerStyle: {
+        backgroundColor: "#22a3d7"
+    },
     backImage: {
         flex: 1, width: null, height: null
     },
     loginContainer: {
-        width: "90%",
+        width: "90%"
     },
-    loginButton:{
-        width:"95%",
-        marginLeft:15,
-        marginTop:20,
-    },
-    notlogged:{
-        color:"white",
-        fontWeight:"bold",
-        marginTop:13,
+    loginButton: {
+        width: "95%",
+        marginLeft: 15,
+        marginTop: 20,
+        marginBottom: 20
     }
 
 }
