@@ -14,7 +14,17 @@ export default class Login extends Component {
             email:"",
             password:""
     }
-    login = () => alert(this.state.email)
+    login = () => {
+        try{
+            const value = AsyncStorage.getItem('user')
+            if(value){
+                alert(value.email)
+            }
+        }
+        catch(error){
+            alert("Error Hand")
+        }
+    }
     
     render() {
         return (

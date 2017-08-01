@@ -3,7 +3,8 @@ import {
     AppRegistry,
     StyleSheet,
     View,
-    Image
+    Image,
+    AsyncStorage,
 } from 'react-native';
 import { Actions } from "react-native-router-flux";
 
@@ -11,10 +12,26 @@ import { Container, Header, Form, Thumbnail, Item, Input, Label, Title, Content,
 
 export default class Signup extends Component {
     state = {
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: ""
+        firstName: null,
+        lastName: null,
+        email: null,
+        password: null
+    }
+  signUp= ()=> {
+        if (this.state.email && this.state.password && this.state.firstName && this.state.lastName) {
+            try {
+                const value = AsyncStorage.setItem("user", JSON.stringify({ firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email, password: this.state.password }))
+                if (value !== null) {
+                    Actions.pop()
+                }
+            }
+            catch (error) {
+                alert("Errror", error)
+            }
+        }
+        else {
+            alert("Required fill all feild")
+        }
     }
     render() {
         return (
@@ -53,7 +70,7 @@ export default class Signup extends Component {
                                     <Label style={Style.loginContainer}>Password</Label>
                                     <Input secureTextEntry onChangeText={(value) => this.setState({ password: value })} />
                                 </Item>
-                                <Button style={Style.loginButton} full info>
+                                <Button style={Style.loginButton} onPress={()=>this.signUp()} full info>
                                     <Text>Register</Text>
                                 </Button>
                             </Form>
