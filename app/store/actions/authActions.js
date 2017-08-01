@@ -17,9 +17,10 @@ export default class AuthActions {
 
     //static NULL = 'NULL';
     
-    static signup() {
+    static signup(payload) {
         return {
-            type: AuthActions.SIGNUP
+            type: AuthActions.SIGNUP,
+            payload:payload
         }
     }
 
@@ -38,7 +39,7 @@ export default class AuthActions {
     }
 
 
-    static signin() {
+    static login() {
         return {
             type: AuthActions.SIGNIN
         }

@@ -19,16 +19,18 @@ export default class Signup extends Component {
     }
   signUp= ()=> {
         if (this.state.email && this.state.password && this.state.firstName && this.state.lastName) {
-            try {
-                const value = AsyncStorage.setItem("user", JSON.stringify({ firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email, password: this.state.password }))
-                if (value !== null) {
-                    Actions.pop()
-                }
-            }
-            catch (error) {
-                alert("Errror", error)
-            }
+        this.props.signup(this.state.email);
         }
+        //     try {
+        //         const value = AsyncStorage.setItem("user", JSON.stringify({ firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email, password: this.state.password }))
+        //         if (value !== null) {
+        //             Actions.pop()
+        //         }
+        //     }
+        //     catch (error) {
+        //         alert("Errror", error)
+        //     }
+        // }
         else {
             alert("Required fill all feild")
         }
