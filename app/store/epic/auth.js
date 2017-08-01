@@ -2,6 +2,7 @@ import { Observable } from 'rxjs';
 import { ActionsObservable } from 'redux-observable';
 import AuthActions from "../actions/authActions";
 import LocalStorage from "../../services/localStorage";
+import {AsyncStorage} from "react-native";
 //** Epic Middlewares For Auth **//
 export default class AuthEpic {
 
@@ -29,9 +30,14 @@ export default class AuthEpic {
     static signupEpic = (action$) =>
         action$.ofType(AuthActions.SIGNUP)
             .mergeMap(({ payload }) => 
-                 Observable.fromPromise(LocalStorage.setUser('user',payload))
-                .map(response => alert(response))
-                .catch(err => alert(arr))
+                 AsyncStorage.setItem('user',JSON.stringify(payload),(err,res)=>{
+                     if(err){
+                         alert(err)
+                     }
+                     else{
+                         alert(res);
+                     }
+                 })
                 // return LocalStorage.setUser('user', payload).then(res => {
                 //     console.log(res)
                 // })
