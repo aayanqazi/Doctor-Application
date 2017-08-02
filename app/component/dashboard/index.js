@@ -6,7 +6,7 @@ import {
     Image
 } from 'react-native';
 import { Actions } from "react-native-router-flux";
-import { Container, Header, Body, Icon, Text, Left, Button, Title, Content, Thumbnail } from 'native-base';
+import { Container, Header, Body, Footer, FooterTab, Icon, Text, Left, Button, Title, Content, Thumbnail } from 'native-base';
 
 export default class Dashboard extends Component {
 
@@ -16,7 +16,7 @@ export default class Dashboard extends Component {
                 <Header style={Style.headerStyle}>
                     <Left>
                         <Button transparent>
-                            <Icon name='menu' />
+                            <Icon name='md-more' />
                         </Button>
                     </Left>
                     <Body>
@@ -27,7 +27,29 @@ export default class Dashboard extends Component {
                     <Content>
 
                     </Content>
+                    <Footer style={Style.headerStyle}>
+                        <FooterTab>
+                            <Button>
+                                <Icon name="apps" />
+                                <Text>Main</Text>
+                            </Button>
+                            <Button>
+                                <Icon name="person" />
+                                <Text>Profile</Text>
+                            </Button>
+                            <Button active>
+                                <Icon name="ios-medkit" />
+                                <Text>Patients</Text>
+                            </Button>
+                            <Button>
+                                <Icon name="ios-log-out" />
+                                <Text>Logout</Text>
+                            </Button>
+                        </FooterTab>
+                    </Footer>
+
                 </Image>
+
             </Container>
         );
     }
