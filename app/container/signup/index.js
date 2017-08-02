@@ -5,7 +5,7 @@ import AuthActions from "../../store/actions/authActions";
 
 class SignupContainer extends Component {
     render(){
-        return <Signup signup={this.props.signUp}/>
+        return <Signup signup={this.props.signUp} userData={this.props.authObj}/>
     }
 }
 

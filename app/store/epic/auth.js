@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { ActionsObservable } from 'redux-observable';
 import AuthActions from "../actions/authActions";
 import LocalStorage from "../../services/localStorage";
-import {AsyncStorage} from "react-native";
+import { AsyncStorage } from "react-native";
 //** Epic Middlewares For Auth **//
 export default class AuthEpic {
 
@@ -29,32 +29,22 @@ export default class AuthEpic {
     //Epic middleware for signup
     static signupEpic = (action$) =>
         action$.ofType(AuthActions.SIGNUP)
-            .mergeMap(({ payload }) => 
-                 AsyncStorage.setItem('user',JSON.stringify(payload),(err,res)=>{
-                     if(err){
-                         alert(err)
-                     }
-                     else{
-                         alert(res);
-                     }
-                 })
-                // return LocalStorage.setUser('user', payload).then(res => {
-                //     console.log(res)
-                // })
-                //     .catch(err => {
-                //     })
-                // return HttpService.post(Path.SIGNUP, payload)
-                //     .switchMap(({ response }) => {
-                //         if (response.err) {
-                //             return Observable.of({
-                //                 type: AuthActions.SIGNUP_FAILER,
-                //                 payload: response.err
-                //             });
-                //         }
-                //         return Observable.of({
-                //             type: AuthActions.SIGNUP_SUCCESS,
-                //             payload: response
-                //         });
-                //     });
-            )
+            .switchMap(({ payload }) => {
+                return Observable.fromPromise(AsyncStorage.setItem('user', JSON.stringify(payload)))
+                    .switchMap(arr => {
+                        if (AsyncStorage.getItem('user')) {
+                            let user = AsyncStorage.getItem('user')
+                            return Observable.of({
+                                type: AuthActions.SIGNUP_SUCCESSFUL,
+                                payload: user
+                            })
+                        }
+                        else {
+                            return Observable.of({
+                                type: AuthActions.SIGNUP_REJECTED,
+                                payload: "Not Saved Try Again"
+                            });
+                        }
+                    })
+            })
 }

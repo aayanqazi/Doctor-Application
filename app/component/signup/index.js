@@ -17,22 +17,18 @@ export default class Signup extends Component {
         email: null,
         password: null
     }
-  signUp= ()=> {
+    signUp = () => {
         if (this.state.email && this.state.password && this.state.firstName && this.state.lastName) {
-        this.props.signup(this.state.email);
+            this.props.signup(this.state.email);
         }
-        //     try {
-        //         const value = AsyncStorage.setItem("user", JSON.stringify({ firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email, password: this.state.password }))
-        //         if (value !== null) {
-        //             Actions.pop()
-        //         }
-        //     }
-        //     catch (error) {
-        //         alert("Errror", error)
-        //     }
-        // }
         else {
             alert("Required fill all feild")
+        }
+    }
+    componentWillReceiveProps(newProps){
+        if(newProps.userData.isRegistered)
+        {
+            Actions.pop();
         }
     }
     render() {
@@ -72,7 +68,7 @@ export default class Signup extends Component {
                                     <Label style={Style.loginContainer}>Password</Label>
                                     <Input secureTextEntry onChangeText={(value) => this.setState({ password: value })} />
                                 </Item>
-                                <Button style={Style.loginButton} onPress={()=>this.signUp()} full info>
+                                <Button style={Style.loginButton} onPress={() => this.signUp()} full info>
                                     <Text>Register</Text>
                                 </Button>
                             </Form>
