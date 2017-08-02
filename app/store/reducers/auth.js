@@ -15,13 +15,13 @@ function AuthReducer(state = INITIAL_STATE, action) {
         case AuthActions.SIGNUP:
             return {...state, isProcessing: true, isRegistered: false,isError : false};
         case AuthActions.SIGNUP_SUCCESSFUL:
-            return {...state, isProcessing: false, isRegistered: true,isError : false, data: {}};            
+            return {...state, isProcessing: false, isRegistered: true,isError : false};            
         case AuthActions.SIGNUP_REJECTED:
             return {...state, isProcessing: false, isRegistered: false,isError : true, errorMessage: action.payload};         
         case AuthActions.SIGNIN:
             return {...state, isProcessing: true, isAuthenticated: false, isError : false};
         case AuthActions.SIGNIN_SUCCESSFUL:
-            return {...state, isProcessing: false, isAuthenticated: true, isError : false, authUser: action.payload ,  errorMessage: {}};
+            return {...state, isProcessing: false, isAuthenticated: true, isError : false, authUser: action.payload};
         case AuthActions.SIGNIN_REJECTED:
             return {...state, isProcessing: false, isAuthenticated: false,authUser:{}, isError : true, errorMessage: action.payload};
         case AuthActions.LOGOUT:

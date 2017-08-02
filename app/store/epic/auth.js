@@ -8,23 +8,24 @@ export default class AuthEpic {
 
     //Epic middleware for login
     // static loginEpic = (action$) =>
-    //     action$.ofType(AuthActions.)
-    //         .switchMap(({ payload }) => {
-    //             return alert("Hello World")
-    //             // return HttpService.post(Path.LOGIN, payload)
-    //             //     .switchMap(({ response }) => {
-    //             //         if (!response.data || response.data.length == 0) {
-    //             //             return Observable.of({
-    //             //                 type: AuthActions.LOGIN_FAILER,
-    //             //                 payload: "email and password not matched ! Try Again "
-    //             //             });
-    //             //         }
-    //             //         return Observable.of({
-    //             //             type: AuthActions.LOGIN_SUCCESS,
-    //             //             payload: response.data
-    //             //         });
-    //             //     });
+    //     action$.ofType(AuthActions.SIGNIN)
+    //         .map(({ payload }) => {
+    //             return Observable.fromPromise(AsyncStorage.getItem('user', (err, res) => {
+    //                 if (err) {
+    //                     return Observable.of({
+    //                         type: AuthActions.SIGNIN_REJECTED,
+    //                         payload: "Not Saved Try Again"
+    //                     });
+    //                 }
+    //                 else {
+    //                     return Observable.of({
+    //                         type: AuthActions.SIGNIN_SUCCESSFUL,
+    //                         payload: res
+    //                     })
+    //                 }
+    //             }))
     //         })
+
 
     //Epic middleware for signup
     static signupEpic = (action$) =>

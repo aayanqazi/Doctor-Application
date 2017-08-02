@@ -19,7 +19,7 @@ export default class Signup extends Component {
     }
     signUp = () => {
         if (this.state.email && this.state.password && this.state.firstName && this.state.lastName) {
-            this.props.signup(this.state.email);
+            this.props.signup({email:this.state.email,password:this.state.password,firstName:this.state.firstName,lastName:this.state.lastName});
         }
         else {
             alert("Required fill all feild")

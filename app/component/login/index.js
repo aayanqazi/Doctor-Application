@@ -15,15 +15,18 @@ export default class Login extends Component {
             password:""
     }
     login = () => {
-        try{
-            const value = AsyncStorage.getItem('user')
-            if(value){
-                alert(value.email)
+        AsyncStorage.getItem('user',(err,res)=>{
+            let user = JSON.parse(res);
+            if(this.state.email==user.email && this.state.password == user.password)
+            {
+                alert("Congratulations!!");
+                AsyncStorage.setItem('token',"1234Admin78910");
+                Actions.dashboard();
             }
-        }
-        catch(error){
-            alert("Error Hand")
-        }
+            else{
+                alert("Failed Please try gain")
+            }
+        })
     }
     
     render() {

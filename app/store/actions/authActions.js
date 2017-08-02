@@ -39,9 +39,10 @@ export default class AuthActions {
     }
 
 
-    static login() {
+    static login(payload) {
         return {
-            type: AuthActions.SIGNIN
+            type: AuthActions.SIGNIN,
+            payload:payload
         }
     }
 

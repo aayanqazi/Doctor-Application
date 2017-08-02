@@ -1,0 +1,19 @@
+import React from 'react';
+import {AsyncStorage} from "react-native";
+import { Actions } from 'react-native-router-flux';
+
+const authGuard = () => {
+    console.log("Auth Guard Staer")
+    return (
+        AsyncStorage.getItem('token',(err,res)=>{
+            if(res){
+                Actions.dashboard();
+            }
+            else{
+                return true
+            }
+        })
+    )
+};
+
+export default authGuard;
