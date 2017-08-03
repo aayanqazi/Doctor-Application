@@ -4,31 +4,30 @@ import {
     StyleSheet,
     View,
     Image,
-    AsyncStorage
+    AsyncStorage,
+    Platform
 } from 'react-native';
-import {Actions} from "react-native-router-flux";
 import { Container, Header, Form, Thumbnail, Item, Input, Label, Title, Content, Button, Left, Right, Body, Icon, Text } from 'native-base';
 
 export default class Login extends Component {
     state = {
-            email:"",
-            password:""
+        email: "",
+        password: ""
     }
     login = () => {
-        AsyncStorage.getItem('user',(err,res)=>{
+        AsyncStorage.getItem('user', (err, res) => {
             let user = JSON.parse(res);
-            if(this.state.email==user.email && this.state.password == user.password)
-            {
+            if (this.state.email == user.email && this.state.password == user.password) {
                 alert("Congratulations!!");
-                AsyncStorage.setItem('token',"1234Admin78910");
-                Actions.dashboard();
+                AsyncStorage.setItem('token', "1234Admin78910");
+                this.props.navigate('dashboard');
             }
-            else{
+            else {
                 alert("Failed Please try gain")
             }
         })
     }
-    
+
     render() {
         return (
             <Container>
@@ -52,18 +51,18 @@ export default class Login extends Component {
                             <Form style={Style.loginContainer}>
                                 <Item floatingLabel>
                                     <Label style={Style.loginContainer}>Email</Label>
-                                    <Input onChangeText={(value)=>this.setState({email:value})}/>
+                                    <Input onChangeText={(value) => this.setState({ email: value })} />
                                 </Item>
                                 <Item floatingLabel>
                                     <Label>Password</Label>
-                                    <Input  onChangeText={(value)=>this.setState({password:value})} secureTextEntry/>
+                                    <Input onChangeText={(value) => this.setState({ password: value })} secureTextEntry />
                                 </Item>
-                                <Button style={Style.loginButton} onPress={()=>this.login()} full info>
+                                <Button style={Style.loginButton} onPress={() => this.login()} full info>
                                     <Text>Login</Text>
                                 </Button>
                             </Form>
-                                <Text onPress={()=>Actions.signup()} style={Style.notlogged}>
-                                    No account yet? Create one
+                            <Text onPress={()=>this.props.navigate('singup')} style={Style.notlogged}>
+                                No account yet? Create one
                                 </Text>
                         </View>
                     </Content>
@@ -74,8 +73,8 @@ export default class Login extends Component {
     }
 }
 const Style = {
-    headerStyle:{
-        backgroundColor:"#22a3d7"
+    headerStyle: {
+        backgroundColor: (Platform.OS === 'ios') ? '#F8F8F8' : "#22a3d7",
     },
     imageThumbnail: {
         width: 200,
@@ -91,15 +90,15 @@ const Style = {
     loginContainer: {
         width: "90%",
     },
-    loginButton:{
-        width:"95%",
-        marginLeft:15,
-        marginTop:20,
+    loginButton: {
+        width: "95%",
+        marginLeft: 15,
+        marginTop: 20,
     },
-    notlogged:{
-        color:"white",
-        fontWeight:"bold",
-        marginTop:13,
+    notlogged: {
+        color: "white",
+        fontWeight: "bold",
+        marginTop: 13,
     }
 
 }

@@ -1,11 +1,11 @@
-import React , {Component} from "react";
-import {connect} from "react-redux";
-import {Login} from "../../component/"
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Login } from "../../component/"
 import AuthActions from "../../store/actions/authActions";
-
 class LoginContainer extends Component {
-    render(){
-        return <Login />
+
+    render() {
+        return <Login navigate={this.props.navigation.navigate}/>
     }
 }
 

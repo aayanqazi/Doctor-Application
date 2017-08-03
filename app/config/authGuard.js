@@ -10,7 +10,7 @@ const authGuard = () => {
                 Actions.dashboard();
             }
             else{
-                return true
+                return false
             }
         })
     )

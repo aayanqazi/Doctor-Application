@@ -3,14 +3,21 @@ import {
     AppRegistry,
     StyleSheet,
     View,
-    Image
+    Image,
+    AsyncStorage,
+    Platform
 } from 'react-native';
-import { Actions } from "react-native-router-flux";
-import { Container, Header, Body, Footer, FooterTab, Icon, Text, Left, Button, Title, Content, Thumbnail } from 'native-base';
-
+import { Container, Header,Card,CardItem, Body, Footer, FooterTab, Icon, Text, Left, Button, Title, Content, Thumbnail } from 'native-base';
+import Clock from "../clock/";
 export default class Dashboard extends Component {
 
+    logOut = () => {
+        AsyncStorage.removeItem('token',()=>{
+            this.props.navigation.navigate('login')
+        })
+    }
     render() {
+        console.log(this.props)
         return (
             <Container>
                 <Header style={Style.headerStyle}>
@@ -25,11 +32,15 @@ export default class Dashboard extends Component {
                 </Header>
                 <Image style={Style.backImage} source={require("../../assets/back.png")}>
                     <Content>
-
+                         <Card style={{marginTop:10}}>
+                        <CardItem>                        
+                               <Clock />
+                        </CardItem>
+                    </Card>
                     </Content>
-                    <Footer style={Style.headerStyle}>
+                    <Footer footerDefaultBg="red">
                         <FooterTab>
-                            <Button>
+                            <Button active>
                                 <Icon name="apps" />
                                 <Text>Main</Text>
                             </Button>
@@ -37,11 +48,11 @@ export default class Dashboard extends Component {
                                 <Icon name="person" />
                                 <Text>Profile</Text>
                             </Button>
-                            <Button active>
+                            <Button>
                                 <Icon name="ios-medkit" />
                                 <Text>Patients</Text>
                             </Button>
-                            <Button>
+                            <Button onPress={()=>this.logOut()}>
                                 <Icon name="ios-log-out" />
                                 <Text>Logout</Text>
                             </Button>
@@ -56,7 +67,7 @@ export default class Dashboard extends Component {
 }
 const Style = {
     headerStyle: {
-        backgroundColor: "#22a3d7",
+        backgroundColor: (Platform.OS === 'ios' ) ? '#F8F8F8' : "#22a3d7",
     },
     backImage: {
         flex: 1, width: null, height: null

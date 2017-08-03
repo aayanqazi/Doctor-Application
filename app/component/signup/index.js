@@ -5,8 +5,8 @@ import {
     View,
     Image,
     AsyncStorage,
+    Platform
 } from 'react-native';
-import { Actions } from "react-native-router-flux";
 
 import { Container, Header, Form, Thumbnail, Item, Input, Label, Title, Content, Button, Left, Right, Body, Icon, Text } from 'native-base';
 
@@ -28,7 +28,7 @@ export default class Signup extends Component {
     componentWillReceiveProps(newProps){
         if(newProps.userData.isRegistered)
         {
-            Actions.pop();
+            this.props.navigation.goBack();
         }
     }
     render() {
@@ -36,7 +36,7 @@ export default class Signup extends Component {
             <Container>
                 <Header style={Style.headerStyle}>
                     <Left>
-                        <Button transparent onPress={() => Actions.pop()}>
+                        <Button transparent onPress={() =>  this.props.navigation.goBack()}>
                             <Icon name='arrow-back' />
                         </Button>
                     </Left>
@@ -89,7 +89,7 @@ const Style = {
         alignItems: 'center',
     },
     headerStyle: {
-        backgroundColor: "#22a3d7"
+        backgroundColor: (Platform.OS === 'ios' ) ? '#F8F8F8' : "#22a3d7",
     },
     backImage: {
         flex: 1, width: null, height: null
