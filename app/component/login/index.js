@@ -14,6 +14,13 @@ export default class Login extends Component {
         email: "",
         password: ""
     }
+    componentWillMount(){
+    AsyncStorage.getItem('token', (err, res) => {
+        if(res){
+            this.props.navigate('dashboard');
+        }
+    })
+    }
     login = () => {
         AsyncStorage.getItem('user', (err, res) => {
             let user = JSON.parse(res);

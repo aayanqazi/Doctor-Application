@@ -16,11 +16,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     timeText: {
-        color: '#999999',
+        color: '#505050',
         fontSize: 40,
     },
     dateText: {
-        color: '#999999',
+        color: '#505050',
         fontSize: 20,
     }
 })
