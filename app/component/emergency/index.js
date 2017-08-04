@@ -18,7 +18,7 @@ export default class Emergency extends Component {
         return (
             <Container>
                 <Image style={Style.backImage} source={require("../../assets/back.png")} >
-                    <Header name="Emergency Number" iconName="arrow-back" clickEvent={()=>this.props.navigation.navigate('Home')}/>
+                    <Header name="Emergency Number" iconName="arrow-back" clickEvent={()=>this.props.navigation.goBack()}/>
                     <Text>Emergency Numbers</Text>
                 </Image>
             </Container>

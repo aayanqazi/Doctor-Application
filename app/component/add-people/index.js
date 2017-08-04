@@ -13,7 +13,7 @@ import Header from "../header/";
 const addPeople = ({navigation}) => {
     return (<Container>
         <Image style={Style.backImage} source={require("../../assets/back.png")} >
-        <Header name="Add Patient" iconName="arrow-back" clickEvent={()=>navigation.navigate('Home')}/>
+        <Header name="Add Patient" iconName="arrow-back" clickEvent={()=>navigation.goBack()}/>
         <Text>ADD PATIENT</Text>
         </Image>
     </Container>)

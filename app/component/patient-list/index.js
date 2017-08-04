@@ -13,7 +13,7 @@ import Header from "../header/";
 const patientList = ({ navigation }) => {
     return (<Container>
         <Image style={Style.backImage} source={require("../../assets/back.png")} >
-            <Header name="Patient List" iconName="arrow-back" clickEvent={() => navigation.navigate("Home")} />
+            <Header name="Patient List" iconName="arrow-back" clickEvent={() => navigation.goBack()} />
             <Text>PATIENT's</Text>
         </Image>
     </Container>)

@@ -23,7 +23,7 @@ const RouterComponent = StackNavigator({
                 tabBarOptions: {
                     activeTintColor: Platform.OS === 'ios' ? '#e91e63' : '#fff'
 
-                }, tabBarPosition: "bottom",swipeEnabled:false
+                }, tabBarPosition: "bottom",swipeEnabled:false,animationEnabled:false
             }
         )
     }
