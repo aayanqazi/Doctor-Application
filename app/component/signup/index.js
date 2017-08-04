@@ -7,8 +7,9 @@ import {
     AsyncStorage,
     Platform
 } from 'react-native';
+import Header from "../header/";
 
-import { Container, Header, Form, Thumbnail, Item, Input, Label, Title, Content, Button, Left, Right, Body, Icon, Text } from 'native-base';
+import { Container, Form, Thumbnail, Item, Input, Label, Title, Content, Button, Left, Right, Body, Icon, Text } from 'native-base';
 
 export default class Signup extends Component {
     state = {
@@ -19,31 +20,21 @@ export default class Signup extends Component {
     }
     signUp = () => {
         if (this.state.email && this.state.password && this.state.firstName && this.state.lastName) {
-            this.props.signup({email:this.state.email,password:this.state.password,firstName:this.state.firstName,lastName:this.state.lastName});
+            this.props.signup({ email: this.state.email, password: this.state.password, firstName: this.state.firstName, lastName: this.state.lastName });
         }
         else {
             alert("Required fill all feild")
         }
     }
-    componentWillReceiveProps(newProps){
-        if(newProps.userData.isRegistered)
-        {
+    componentWillReceiveProps(newProps) {
+        if (newProps.userData.isRegistered) {
             this.props.navigation.goBack();
         }
     }
     render() {
         return (
             <Container>
-                <Header style={Style.headerStyle}>
-                    <Left>
-                        <Button transparent onPress={() =>  this.props.navigation.goBack()}>
-                            <Icon name='arrow-back' />
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title>Authentication</Title>
-                    </Body>
-                </Header>
+                <Header name="Authentication" iconName="arrow-back" clickEvent={()=>this.props.navigation.goBack()}/>
                 <Image style={Style.backImage} source={require("../../assets/back.png")}>
                     <Content>
                         <View style={Style.imageStyle}>
@@ -87,9 +78,6 @@ const Style = {
     imageStyle: {
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    headerStyle: {
-        backgroundColor: (Platform.OS === 'ios' ) ? '#F8F8F8' : "#22a3d7",
     },
     backImage: {
         flex: 1, width: null, height: null

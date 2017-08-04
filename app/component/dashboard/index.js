@@ -5,77 +5,39 @@ import {
     View,
     Image,
     AsyncStorage,
-    Platform
+    Platform,
+    TouchableOpacity
 } from 'react-native';
-import { Container, Grid, Col, Row, Header, Card, CardItem, Body, Footer, FooterTab, Icon, Text, Left, Button, Title, Content, Thumbnail } from 'native-base';
-import Main from "../main/";
+import Home from "../main/";
+import Header from "../header/";
+import { Container, Grid, Col, Row, Card, CardItem, Body, Footer, FooterTab, Icon, Text, Left, Button, Title, Content, Thumbnail } from 'native-base';
 export default class Dashboard extends Component {
+    static navigationOptions = {
+        tabBarLabel: 'Main',
+    };
     state = {
-        value:0
+        value: 0
     }
     logOut = () => {
         AsyncStorage.removeItem('token', () => {
             this.props.navigation.navigate('login')
         })
     }
-    mainWindow = () => {
-        switch(this.state.value){
-            case 0:
-            return <Main logout={this.logOut} navigation={this.props.navigation}/>;
-            default:
-            return "not found"
-        }
-        
-    }
     render() {
-        console.log(this.props)
         return (
             <Container>
-                <Header style={Style.headerStyle}>
-                    <Left>
-                        <Button transparent>
-                            <Icon name='md-more' />
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title>Tracking System</Title>
-                    </Body>
-                </Header>
                 <Image style={Style.backImage} source={require("../../assets/back.png")}>
+                    <Header name="Tracking System" iconName="menu" />
                     <Content>
-                        {this.mainWindow()}
+                        <Home logout={this.logOut} navigation={this.props.navigation} />
                     </Content>
-                    <Footer footerDefaultBg="red">
-                        <FooterTab>
-                            <Button active>
-                                <Icon name="apps" />
-                                <Text>Main</Text>
-                            </Button>
-                            <Button>
-                                <Icon name="person" />
-                                <Text>Profile</Text>
-                            </Button>
-                            <Button>
-                                <Icon name="ios-medkit" />
-                                <Text>Patients</Text>
-                            </Button>
-                            <Button onPress={() => this.logOut()}>
-                                <Icon name="ios-log-out" />
-                                <Text>Logout</Text>
-                            </Button>
-                        </FooterTab>
-                    </Footer>
-
                 </Image>
-
             </Container>
         );
     }
 }
+
 const Style = {
-    headerStyle: {
-        backgroundColor: (Platform.OS === 'ios') ? '#F8F8F8' : "#22a3d7",
-    },
     backImage: {
         flex: 1, width: null, height: null
     },

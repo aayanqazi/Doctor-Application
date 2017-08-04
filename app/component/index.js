@@ -1,9 +1,16 @@
 import Login from "./login/";
 import Signup from "./signup/";
 import Dashboard from "./dashboard/";
+import Main from "./main/";
+import Addpeople from "./add-people";
+import PatientList from "./patient-list";
+import Emergency from "./emergency";
 
 export {
     Login,
     Signup,
-    Dashboard
+    Dashboard,
+    Addpeople,
+    PatientList,
+    Emergency
 }

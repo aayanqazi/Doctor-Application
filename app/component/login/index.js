@@ -7,7 +7,9 @@ import {
     AsyncStorage,
     Platform
 } from 'react-native';
-import { Container, Header, Form, Thumbnail, Item, Input, Label, Title, Content, Button, Left, Right, Body, Icon, Text } from 'native-base';
+import Header from "../header/";
+
+import { Container, Form, Thumbnail, Item, Input, Label, Title, Content, Button, Left, Right, Body, Icon, Text } from 'native-base';
 
 export default class Login extends Component {
     state = {
@@ -36,19 +38,12 @@ export default class Login extends Component {
     }
 
     render() {
+                console.log(this.props.children)
+
         return (
             <Container>
-                <Header style={Style.headerStyle}>
-                    <Left>
-                        <Button transparent>
-                            <Icon name='menu' />
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title>Authentication</Title>
-                    </Body>
-                </Header>
                 <Image style={Style.backImage} source={require("../../assets/back.png")}>
+                <Header name="Authentication" iconName="menu"/>
                     <Content>
                         <View style={Style.imageStyle}>
                             <Thumbnail
@@ -80,9 +75,6 @@ export default class Login extends Component {
     }
 }
 const Style = {
-    headerStyle: {
-        backgroundColor: (Platform.OS === 'ios') ? '#F8F8F8' : "#22a3d7",
-    },
     imageThumbnail: {
         width: 200,
         height: 200
