@@ -6,10 +6,9 @@ import {
     Image,
 } from 'react-native';
 import { Container, Button, Text, Grid, Col, Row, Icon, Form, Item, Input, Label } from "native-base";
-
 import Header from "../header/";
 
-const addPeople = ({ navigation }) => {
+const addPeople = ({ navigation, getValues, add ,patient,values}) => {
     return (<Container>
         <Image style={Style.backImage} source={require("../../assets/back.png")} >
             {/*<Header name="Add Patient" iconName="arrow-back" clickEvent={()=>navigation.goBack()}/>*/}
@@ -18,7 +17,7 @@ const addPeople = ({ navigation }) => {
                     <Icon name='md-close' />
                     <Text>Cancel</Text>
                 </Button></Col>
-                <Col><Button full info>
+                <Col><Button full info onPress={add}>
                     <Icon name='md-checkmark' />
                     <Text>Save</Text>
                 </Button></Col>
@@ -27,27 +26,27 @@ const addPeople = ({ navigation }) => {
                 <Form>
                     <Item>
                         <Icon name="ios-person" />
-                        <Input placeholder="First Name" />
+                        <Input placeholder="First Name" value={values.firstName} onChangeText={(value) => getValues("firstName", value)} />
                     </Item>
                     <Item>
                         <Icon name="ios-person" />
-                        <Input placeholder="Last Name" />
+                        <Input placeholder="Last Name" value={values.lastName} onChangeText={(value) => getValues("lastName", value)} />
                     </Item>
                     <Item>
                         <Icon name="ios-man" />
-                        <Input placeholder="Age" />
+                        <Input placeholder="Age" value={values.age} onChangeText={(value) => getValues("age", value)} />
                     </Item>
                     <Item>
-                        <Icon name="ios-call"/>
-                        <Input placeholder="Mobile Number" />
+                        <Icon name="ios-call" />
+                        <Input placeholder="Mobile Number" value={values.mobile_number} onChangeText={(value) => getValues("mobile_number", value)} />
                     </Item>
                     <Item>
                         <Icon name="ios-calendar" />
-                        <Input placeholder="Date" />
+                        <Input placeholder="Date" value={values.date} onChangeText={(value) => getValues("date", value)} />
                     </Item>
                     <Item>
                         <Icon name="md-medkit" />
-                        <Input placeholder="Disease" />
+                        <Input placeholder="Disease" value={values.disease} onChangeText={(value) => getValues("disease", value)} />
                     </Item>
                 </Form>
             </View>

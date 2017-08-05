@@ -7,7 +7,6 @@ import {
 import Router from './config/router';
 import Store from "./store/";
 import { Provider } from "react-redux";
-
 export default class App extends Component {
   render() {
     return (

@@ -1,14 +1,19 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { combineEpics, createEpicMiddleware } from 'redux-observable';
 import AuthReducer from './reducers/auth';
+import PatientReducer from './reducers/patient';
 import AuthEpic from "./epic/auth";
+import patientEpic from "./epic/pateint";
+
 //combine epic
 const rootEpic = combineEpics(
-  AuthEpic.signupEpic
+  AuthEpic.signupEpic,
+  patientEpic.addPatientEpic
 );
 //combine reducers
 export const rootReducer = combineReducers({
-    AuthReducer
+    AuthReducer,
+    PatientReducer
 });
 
 //create epic middleware

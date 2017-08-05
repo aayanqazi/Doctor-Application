@@ -15,12 +15,23 @@ export default class AuthActions {
 
     static ISLOGGEDIN = 'ISLOGGEDIN';
 
+    static ADD_PATIENT = "ADD_PATIENT";
+    static ADD_PATIENT_SUCCESSFULL = "ADD_PATIENT_SUCCESSFULL";
+    static ADD_PATIENT_FAILED = "ADD_PATIENT_FAILED";
+
     //static NULL = 'NULL';
-    
+
+    static add_patient(payload) {
+        return {
+            type: AuthActions.ADD_PATIENT,
+            payload: payload
+        }
+    }
+
     static signup(payload) {
         return {
             type: AuthActions.SIGNUP,
-            payload:payload
+            payload: payload
         }
     }
 
@@ -42,7 +53,7 @@ export default class AuthActions {
     static login(payload) {
         return {
             type: AuthActions.SIGNIN,
-            payload:payload
+            payload: payload
         }
     }
 
@@ -71,8 +82,8 @@ export default class AuthActions {
             type: AuthActions.LOGOUT_SUCCESSFUL
         }
     }
-    static Logged(user){
-        return{
+    static Logged(user) {
+        return {
             type: "logging",
             payload: user
         }
