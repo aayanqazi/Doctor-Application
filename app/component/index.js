@@ -5,6 +5,7 @@ import Main from "./main/";
 import Addpeople from "./add-people";
 import PatientList from "./patient-list";
 import Emergency from "./emergency";
+import PatientProfile from "./patient-profile";
 
 export {
     Login,
@@ -12,5 +13,6 @@ export {
     Dashboard,
     Addpeople,
     PatientList,
-    Emergency
+    Emergency,
+    PatientProfile
 }

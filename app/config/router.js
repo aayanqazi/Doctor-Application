@@ -2,7 +2,7 @@ import React from 'react';
 // import { Scene, Router } from 'react-native-router-flux';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import { Signup, Login, AddPeople, Patient } from "../container";
-import { Dashboard, Emergency } from "../component";
+import { Dashboard, Emergency ,PatientProfile} from "../component";
 import AuthGuard from "./authGuard";
 import { Platform } from "react-native";
 
@@ -26,7 +26,8 @@ const RouterComponent = StackNavigator({
                 }, tabBarPosition: "bottom",swipeEnabled:false,animationEnabled:false
             }
         )
-    }
+    },
+    profile:{screen:PatientProfile}
 }, { navigationOptions: { header: null } });
 /*<Router>
     <Scene key="root">

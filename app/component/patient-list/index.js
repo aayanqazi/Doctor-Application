@@ -33,14 +33,14 @@ const patientList = ({ navigation, data }) => {
             <ScrollView>
                 {data ? <List>
                     {data.map((arr, indx) => {
-                        return (<ListItem key={indx} avatar>
+                        return (<ListItem key={indx} avatar onPress={()=>navigation.navigate('profile',{data:arr})}>
                             <Left>
                                 <Thumbnail source={require("../../assets/avatar.png")} />
                             </Left>
                             <Body>
-                                <Text>{arr.firstName +" "+ arr.lastName}</Text>
+                                <Text>{arr.firstName + " " + arr.lastName}</Text>
                                 <Text note>{arr.age}</Text>
-                                 <Text note>{"Disease: "+arr.disease}</Text>
+                                <Text note>{"Disease: " + arr.disease}</Text>
 
                             </Body>
                             <Right>
@@ -50,16 +50,16 @@ const patientList = ({ navigation, data }) => {
 
                     })}
                 </List> : <Text>Loading</Text>}
-                </ScrollView>
+            </ScrollView>
         </Image>
     </Container>)
 }
 const Style = StyleSheet.create({
-                backImage: {
-                flex: 1, width: null, height: null
+    backImage: {
+        flex: 1, width: null, height: null
     },
     headerStyle: {
-                backgroundColor: (Platform.OS === 'ios') ? '#F8F8F8' : "#22a3d7",
+        backgroundColor: (Platform.OS === 'ios') ? '#F8F8F8' : "#22a3d7",
 
     }
 })
