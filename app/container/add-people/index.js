@@ -41,15 +41,16 @@ class PatientContainer extends Component {
         }
 
     }
+
     getValues = (states, val) => {
         var obj = this.state.form;
         obj[states] = val;
         this.setState(obj)
     }
-    componentWillReceiveProps(newProps){
+    componentWillReceiveProps(newProps) {
         var obj = this.state.form;
-        if(newProps.patient.isAdd){
-            for(var key in obj){
+        if (newProps.patient.isAdd) {
+            for (var key in obj) {
                 obj[key] = null;
             }
             this.setState(obj);
@@ -58,7 +59,7 @@ class PatientContainer extends Component {
         }
     }
     render() {
-        return <Addpeople  add={this.addPatient} values={this.state.form} patient={this.props.patient} getValues={this.getValues} navigation={this.props.navigation} />
+        return <Addpeople isOpen={this.state.isDateTimePickerVisible} add={this.addPatient} values={this.state.form} patient={this.props.patient} getValues={this.getValues} navigation={this.props.navigation} />
     }
 }
 
