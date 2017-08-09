@@ -25,11 +25,7 @@ const patientProfile = (props) => {
                     <Text style={Style.name}>{profileData.firstName + " " + profileData.lastName}</Text>
                     <Text onPress={() => Linking.openURL("tel:" + profileData.mobile_number)} style={Style.name}>{profileData.mobile_number}</Text>
                 </View>
-            </Image>
-            {/*<View style={{ justifyContent: "center", alignItems: "center", marginTop: 15 }}>
-                    <Text>{profileData.firstName}</Text>
-                    
-                </View>*/}
+            </Image>                  
             <Card>
                 <List>
                     <ListItem>
@@ -82,10 +78,11 @@ const patientProfile = (props) => {
                             </Text>
                         </Right>
                     </ListItem>
-
                 </List>
             </Card>
-
+            <Button full danger onPress={()=>{props.navigation.state.params.deleted(props.navigation.state.params.index);props.navigation.goBack()}}>
+                <Text>Delete </Text>
+            </Button>
         </Content>
         {/*</Image>*/}
     </Container>)

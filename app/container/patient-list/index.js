@@ -20,7 +20,7 @@ class PatientLists extends Component {
         this.props.list();
     }
     render() {
-        return <PatientList search={this.props.search} navigation={this.props.navigation} data={this.state.data} />
+        return <PatientList deletes={this.props.delete} search={this.props.search} navigation={this.props.navigation} data={this.state.data} />
     }
 }
 
@@ -30,7 +30,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         list: () => dispatch(AuthActions.getPatient()),
-        search: (value) => dispatch(AuthActions.searchPatient(value))
+        search: (value) => dispatch(AuthActions.searchPatient(value)),
+        delete: (val) => dispatch(AuthActions.deletePatient(val))
     };
 };
 

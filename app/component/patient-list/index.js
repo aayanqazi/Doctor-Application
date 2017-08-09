@@ -13,7 +13,7 @@ import { Container, Header, Left, Body, Right, Thumbnail, Item, Icon, Input, But
 
 // import Header from "../header/";
 
-const patientList = ({ navigation, data, search }) => {
+const patientList = ({ navigation, data, search ,index, deletes}) => {
     if (data) {
         data = JSON.parse(data);
     }
@@ -33,7 +33,7 @@ const patientList = ({ navigation, data, search }) => {
             <ScrollView>
                 {data ? <List>
                     {data.map((arr, indx) => {
-                        return (<ListItem key={indx} avatar onPress={()=>navigation.navigate('profile',{data:arr})}>
+                        return (<ListItem key={indx} avatar onPress={()=>navigation.navigate('profile',{data:arr,index:indx,deleted:deletes})}>
                             <Left>
                                 <Thumbnail source={require("../../assets/avatar.png")} />
                             </Left>

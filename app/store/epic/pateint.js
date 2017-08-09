@@ -11,7 +11,7 @@ export default class PatientEpic {
     //Epic middleware for signup
     static addPatientEpic = (action$) =>
         action$.ofType(AuthActions.ADD_PATIENT)
-             .debounceTime(1000)
+            .debounceTime(1000)
             .switchMap(({ payload }) => {
                 return Observable.fromPromise(AsyncStorage.setItem('patients', JSON.stringify(payload)))
                     .switchMap(arr => {
@@ -60,11 +60,11 @@ export default class PatientEpic {
 
     static searchPatientEpic = (action$) =>
         action$.ofType(AuthActions.SEARCH_PATIENT)
-            .switchMap(({payload}) => {
+            .switchMap(({ payload }) => {
                 return Observable.from(AsyncStorage.getItem("patients"))
                     .switchMap(arr => {
                         var data = JSON.parse(arr);
-                        data = JSON.stringify(data.filter(function(el) {
+                        data = JSON.stringify(data.filter(function (el) {
                             return el.firstName.toLowerCase().indexOf(payload.toLowerCase()) > -1;
                         }))
                         return Observable.of({
@@ -106,6 +106,22 @@ export default class PatientEpic {
 
     //     })
     // })
+    static deletePatientEpic = (action$) =>
+        action$.ofType(AuthActions.DELETED_PATIENT)
+            .switchMap(({ payload }) => {
+                return Observable.from(AsyncStorage.getItem("patients"))
+                    .switchMap(arr => {
+                        var data = JSON.parse(arr);
+                        data.splice(payload,1)
+                        data=JSON.stringify(data);
+                        AsyncStorage.setItem('patients',data)
+                        return Observable.of({
+                            type: AuthActions.GET_PATIENT_SUCCESSFUL,
+                            payload: data
+                        })
+                    })
 
+
+            })
 }
 

@@ -22,6 +22,7 @@ export default class AuthActions {
     static ADD_PATIENT_SUCCESSFULL = "ADD_PATIENT_SUCCESSFULL";
     static ADD_PATIENT_FAILED = "ADD_PATIENT_FAILED";
 
+    static DELETED_PATIENT = "DELETED_PATIENT";
     //static NULL = 'NULL';
 
     static add_patient(payload) {
@@ -94,10 +95,11 @@ export default class AuthActions {
         }
     }
 
-    static isLoggedIn(user) {
+    static deletePatient(index) {
+        // alert(index);
         return {
-            type: AuthActions.ISLOGGEDIN,
-            payload: user
+            type: AuthActions.DELETED_PATIENT,
+            payload: index
         }
     }
 

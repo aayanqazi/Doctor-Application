@@ -10,7 +10,8 @@ const rootEpic = combineEpics(
   AuthEpic.signupEpic,
   patientEpic.addPatientEpic,
   patientEpic.getPatientEpic,
-  patientEpic.searchPatientEpic
+  patientEpic.searchPatientEpic,
+  patientEpic.deletePatientEpic
 );
 //combine reducers
 export const rootReducer = combineReducers({
