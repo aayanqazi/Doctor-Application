@@ -13,7 +13,7 @@ import { Container, Header, Left, Body, Right, Thumbnail, Item, Icon, Input, But
 
 // import Header from "../header/";
 
-const patientList = ({ navigation, data }) => {
+const patientList = ({ navigation, data, search }) => {
     if (data) {
         data = JSON.parse(data);
     }
@@ -23,7 +23,7 @@ const patientList = ({ navigation, data }) => {
             <Header searchBar style={Style.headerStyle} rounded>
                 <Item style={{ backgroundColor: "rgba(255,255,255,0.8)" }}>
                     <Icon name="ios-search" />
-                    <Input placeholder="Search" />
+                    <Input placeholder="Search" onChangeText={(val)=>search(val)}/>
                     <Icon name="ios-people" />
                 </Item>
                 <Button transparent>

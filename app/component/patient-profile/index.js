@@ -83,7 +83,6 @@ const patientProfile = (props) => {
                         </Right>
                     </ListItem>
 
-
                 </List>
             </Card>
 
@@ -104,7 +103,7 @@ const Style = StyleSheet.create({
     },
     name: {
         color: "white",
-        textAlign:"center"
+        textAlign: "center"
     }
 })
 export default patientProfile;

@@ -59,6 +59,7 @@ class PatientContainer extends Component {
         }
     }
     render() {
+        // this.props.patient.isAdd ? this.props.navigation.navigate('Home') : null;
         return <Addpeople isOpen={this.state.isDateTimePickerVisible} add={this.addPatient} values={this.state.form} patient={this.props.patient} getValues={this.getValues} navigation={this.props.navigation} />
     }
 }

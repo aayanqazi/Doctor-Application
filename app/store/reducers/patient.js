@@ -2,7 +2,7 @@
 import AuthActions from "./../actions/authActions";
 
 const INITIAL_STATE = {
-    data: {},
+    data: null,
     isAdd: false,
     isProcessing: false,
     isError: false,
@@ -16,7 +16,14 @@ function AuthReducer(state = INITIAL_STATE, action) {
         case AuthActions.ADD_PATIENT_SUCCESSFULL:
             return { ...state, isProcessing: false, isAdd: true, isError: false, data: action.payload };
         case AuthActions.ADD_PATIENT_FAILED:
-            return { ...state, isProcessing: false, isAdd: false, isError: true , errorMessage:action.payload };
+            return { ...state, isProcessing: false, isAdd: false, isError: true, errorMessage: action.payload };
+        case AuthActions.GET_PATIENT:
+            return { ...state, isProcessing: true, isAdd: false, isError: false };
+        case AuthActions.GET_PATIENT_SUCCESSFUL:
+            return { ...state, isProcessing: false, isAdd: false, isError: false, data: action.payload };
+        case AuthActions.GET_PATIENT_FAILED:
+            return { ...state, isProcessing: false, isAdd: false, isError: true, errorMessage: action.payload };
+
         // case AuthActions.SIGNUP_SUCCESSFUL:
         //     return { ...state, isProcessing: false, isRegistered: true, isError: false };
         // case AuthActions.SIGNUP_REJECTED:

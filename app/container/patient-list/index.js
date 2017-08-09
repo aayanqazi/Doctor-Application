@@ -10,21 +10,27 @@ class PatientLists extends Component {
     state = {
         data: ""
     }
-
+    searchingArray = (arr)=>{
+        console.log(JSON.parse(this.state.data),arr);
+    }
+    componentWillReceiveProps(newProps) {
+       this.setState({data:newProps.patientList.data})
+    }
+    componentWillMount() {
+        this.props.list();
+    }
     render() {
-        AsyncStorage.getItem('patients', (cb, result) => {
-            this.setState({ data: result })
-        })
-        return <PatientList navigation={this.props.navigation} data={this.state.data} />
+        return <PatientList search={this.props.search} navigation={this.props.navigation} data={this.state.data} />
     }
 }
 
 const mapStateToProps = (state) => {
-    return { authObj: state.AuthReducer };
+    return { patientList: state.PatientReducer };
 };
 const mapDispatchToProps = (dispatch) => {
     return {
-        login: (userObj) => dispatch(AuthActions.login(userObj))
+        list: () => dispatch(AuthActions.getPatient()),
+        search: (value) => dispatch(AuthActions.searchPatient(value))
     };
 };
 

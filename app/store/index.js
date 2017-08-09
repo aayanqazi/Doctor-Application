@@ -8,7 +8,9 @@ import patientEpic from "./epic/pateint";
 //combine epic
 const rootEpic = combineEpics(
   AuthEpic.signupEpic,
-  patientEpic.addPatientEpic
+  patientEpic.addPatientEpic,
+  patientEpic.getPatientEpic,
+  patientEpic.searchPatientEpic
 );
 //combine reducers
 export const rootReducer = combineReducers({

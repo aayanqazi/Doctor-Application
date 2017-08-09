@@ -8,10 +8,13 @@ export default class AuthActions {
     static SIGNIN_SUCCESSFUL = 'SIGNIN_SUCCESSFUL';
     static SIGNIN_REJECTED = 'SIGNIN_REJECTED';
 
-    static LOGOUT = 'LOGOUT';
+    static SEARCH_PATIENT = 'SEARCH_PATIENT';
     static LOGOUT_SUCCESSFUL = 'LOGOUT_SUCCESSFUL';
 
-    static UPDATE_USER = 'UPDATE_USER';
+    static GET_PATIENT = 'GET_PATIENT';
+    static GET_PATIENT_SUCCESSFUL = 'GET_PATIENT_SUCCESSFUL';
+    static GET_PATIENT_FAILED = 'GET_PATIENT_FAILED';
+
 
     static ISLOGGEDIN = 'ISLOGGEDIN';
 
@@ -77,9 +80,11 @@ export default class AuthActions {
         }
     }
 
-    static logoutSuccessful() {
+    static searchPatient(data) {
+        // alert(data);
         return {
-            type: AuthActions.LOGOUT_SUCCESSFUL
+            type: AuthActions.SEARCH_PATIENT,
+            payload:data
         }
     }
     static Logged(user) {
@@ -96,10 +101,9 @@ export default class AuthActions {
         }
     }
 
-    static updateUser(updatedUser) {
+    static getPatient() {
         return {
-            type: AuthActions.UPDATE_USER,
-            payload: updatedUser
+            type: AuthActions.GET_PATIENT,
         }
     }
 }
