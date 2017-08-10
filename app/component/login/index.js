@@ -8,20 +8,25 @@ import {
     Platform
 } from 'react-native';
 import Header from "../header/";
+import { NavigationActions } from "react-navigation";
 
 import { Container, Form, Thumbnail, Item, Input, Label, Title, Content, Button, Left, Right, Body, Icon, Text } from 'native-base';
 
 export default class Login extends Component {
+    constructor(props) {
+        super(props);
+        console.log(this.props)
+    }
     state = {
         email: "",
         password: ""
     }
-    componentWillMount(){
-    AsyncStorage.getItem('token', (err, res) => {
-        if(res){
-            this.props.navigate('dashboard');
-        }
-    })
+    componentWillMount() {
+        AsyncStorage.getItem('token', (err, result) => {
+            if (result) {
+                this.props.navigation.dispatch(NavigationActions.reset({ index: 0, actions: [NavigationActions.navigate({ routeName: 'dashboard' })] }))
+            }
+        })
     }
     login = () => {
         AsyncStorage.getItem('user', (err, res) => {
@@ -29,7 +34,8 @@ export default class Login extends Component {
             if (this.state.email == user.email && this.state.password == user.password) {
                 alert("Congratulations!!");
                 AsyncStorage.setItem('token', "1234Admin78910");
-                this.props.navigate('dashboard');
+                this.props.navigation.dispatch(NavigationActions.reset({ index: 0, actions: [NavigationActions.navigate({ routeName: 'dashboard' })] }))
+
             }
             else {
                 alert("Failed Please try gain")
@@ -38,12 +44,10 @@ export default class Login extends Component {
     }
 
     render() {
-                console.log(this.props.children)
-
         return (
             <Container>
                 <Image style={Style.backImage} source={require("../../assets/back.png")}>
-                <Header name="Authentication" iconName="menu"/>
+                    <Header name="Authentication" iconName="menu" />
                     <Content>
                         <View style={Style.imageStyle}>
                             <Thumbnail
@@ -63,7 +67,7 @@ export default class Login extends Component {
                                     <Text>Login</Text>
                                 </Button>
                             </Form>
-                            <Text onPress={()=>this.props.navigate('singup')} style={Style.notlogged}>
+                            <Text onPress={() => this.props.navigation.navigate('singup')} style={Style.notlogged}>
                                 No account yet? Create one
                                 </Text>
                         </View>

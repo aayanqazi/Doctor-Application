@@ -33,7 +33,7 @@ const patientProfile = (props) => {
                             <Text>First Name </Text>
                         </Left>
                         <Right>
-                            <Text>
+                            <Text note>
                                 {profileData.firstName}
                             </Text>
                         </Right>
@@ -43,7 +43,7 @@ const patientProfile = (props) => {
                             <Text>Last Name </Text>
                         </Left>
                         <Right>
-                            <Text>
+                            <Text note>
                                 {profileData.lastName}
                             </Text>
                         </Right>
@@ -53,7 +53,7 @@ const patientProfile = (props) => {
                             <Text>Age</Text>
                         </Left>
                         <Right>
-                            <Text>
+                            <Text note>
                                 {profileData.age}
                             </Text>
                         </Right>
@@ -63,7 +63,7 @@ const patientProfile = (props) => {
                             <Text>Disease</Text>
                         </Left>
                         <Right>
-                            <Text>
+                            <Text note>
                                 {profileData.disease}
                             </Text>
                         </Right>
@@ -73,7 +73,7 @@ const patientProfile = (props) => {
                             <Text>Date of arrival</Text>
                         </Left>
                         <Right>
-                            <Text>
+                            <Text note>
                                 {profileData.date}
                             </Text>
                         </Right>

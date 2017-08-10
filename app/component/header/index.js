@@ -17,7 +17,7 @@ const Headers = ({name,iconName,clickEvent=null}) => {
 
 const Style = StyleSheet.create({
     headerStyle: {
-        backgroundColor: (Platform.OS === 'ios') ? '#F8F8F8' : "#22a3d7",
+        backgroundColor:  "#22a3d7",
     },
 })
 

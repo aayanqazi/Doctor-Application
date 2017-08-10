@@ -21,7 +21,7 @@ export default class PatientEpic {
                         if (this.patientList) {
                             return Observable.of({
                                 type: AuthActions.ADD_PATIENT_SUCCESSFULL,
-                                payload: this.patientList
+                                payload: JSON.stringify(payload)
                             })
                         }
                         else {

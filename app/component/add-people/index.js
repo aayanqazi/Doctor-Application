@@ -7,9 +7,10 @@ import {
 } from 'react-native';
 import { Container, Button, Text, Grid, Col, Row, Icon, Form, Item, Input, Label } from "native-base";
 import Header from "../header/";
-import DateTimePicker from 'react-native-modal-datetime-picker';
+// import DateTimePicker from 'react-native-modal-datetime-picker';
+// import DatePicker from "../date-picker/";
 
-const addPeople = ({ navigation, getValues, add, patient, values }) => {
+const addPeople = ({ navigation, getValues,datePicker, add, patient, values }) => {
     return (<Container>
         <Image style={Style.backImage} source={require("../../assets/back.png")} >
             {/*<Header name="Add Patient" iconName="arrow-back" clickEvent={()=>navigation.goBack()}/>*/}
@@ -43,8 +44,7 @@ const addPeople = ({ navigation, getValues, add, patient, values }) => {
                     </Item>
                     <Item>
                         <Icon name="ios-calendar" />
-                        <Input placeholder="Date" value={values.date} onChangeText={(value) => getValues("date", value)} />
-                        
+                        <Input onFocus={()=>datePicker()} placeholder="Date" value={values.date} onChangeText={(value) => getValues("date", value)} />
                     </Item>
 
                     <Item>

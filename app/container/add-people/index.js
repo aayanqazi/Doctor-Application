@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Addpeople } from "../../component/"
 import AuthActions from "../../store/actions/authActions";
 import { AsyncStorage } from "react-native";
-
+import { DatePickerAndroid, Platform ,DatePickerIOS} from "react-native";
 class PatientContainer extends Component {
     static navigationOptions = {
         tabBarLabel: 'Add Patient',
@@ -17,6 +17,23 @@ class PatientContainer extends Component {
             date: null,
             disease: null
         }
+    }
+    datePicker =  () => {
+        (Platform.OS === 'ios') ? <DatePickerIOS onDateChange={(val)=>this.getValues("date",val)}/>:this.datePickerAndroid()
+    }
+    datePickerAndroid = async () => {
+        try {
+            const { action, year, month, day } = await DatePickerAndroid.open({
+                date: new Date(2017, 4, 25)
+            });
+            if (action !== DatePickerAndroid.dismissedAction) {
+                // Selected year, month (0-11), day
+                this.getValues("date", day + "/" + month + "/" + year);
+            }
+        } catch ({ code, message }) {
+            console.warn('Cannot open date picker', message);
+        }
+
     }
     addPatient = () => {
         if (this.state.form.firstName && this.state.form.lastName && this.state.form.age && this.state.form.mobile_number && this.state.form.date && this.state.form.disease) {
@@ -60,7 +77,7 @@ class PatientContainer extends Component {
     }
     render() {
         // this.props.patient.isAdd ? this.props.navigation.navigate('Home') : null;
-        return <Addpeople isOpen={this.state.isDateTimePickerVisible} add={this.addPatient} values={this.state.form} patient={this.props.patient} getValues={this.getValues} navigation={this.props.navigation} />
+        return <Addpeople isOpen={this.state.isDateTimePickerVisible} add={this.addPatient} datePicker={this.datePicker} values={this.state.form} patient={this.props.patient} getValues={this.getValues} navigation={this.props.navigation} />
     }
 }
 
