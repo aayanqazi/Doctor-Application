@@ -8,6 +8,7 @@ import patientEpic from "./epic/pateint";
 //combine epic
 const rootEpic = combineEpics(
   AuthEpic.signupEpic,
+  AuthEpic.loginEpic,
   patientEpic.addPatientEpic,
   patientEpic.getPatientEpic,
   patientEpic.searchPatientEpic,

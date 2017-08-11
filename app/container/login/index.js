@@ -5,7 +5,7 @@ import AuthActions from "../../store/actions/authActions";
 class LoginContainer extends Component {
 
     render() {
-        return <Login navigation={this.props.navigation}/>
+        return <Login user ={this.props.authObj} navigation={this.props.navigation} login={this.props.login}/>
     }
 }
 

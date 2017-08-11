@@ -28,19 +28,29 @@ export default class Login extends Component {
             }
         })
     }
+    componentWillReceiveProps(newProps) {
+        if (newProps.user.isAuthenticated) {
+            this.props.navigation.dispatch(NavigationActions.reset({ index: 0, actions: [NavigationActions.navigate({ routeName: 'dashboard' })] }))
+            AsyncStorage.setItem('token', "1234Admin78910");
+        }
+        else if(newProps.user.isError){
+            alert("Invalid username and password");
+        }
+    }
     login = () => {
-        AsyncStorage.getItem('user', (err, res) => {
-            let user = JSON.parse(res);
-            if (this.state.email == user.email && this.state.password == user.password) {
-                alert("Congratulations!!");
-                AsyncStorage.setItem('token', "1234Admin78910");
-                this.props.navigation.dispatch(NavigationActions.reset({ index: 0, actions: [NavigationActions.navigate({ routeName: 'dashboard' })] }))
+        this.props.login({ email: this.state.email, password: this.state.password });
+        // AsyncStorage.getItem('user', (err, res) => {
+        //     let user = JSON.parse(res);
+        //     if (this.state.email == user.email && this.state.password == user.password) {
+        //         alert("Congratulations!!");
+        //         AsyncStorage.setItem('token', "1234Admin78910");
+        //         this.props.navigation.dispatch(NavigationActions.reset({ index: 0, actions: [NavigationActions.navigate({ routeName: 'dashboard' })] }))
 
-            }
-            else {
-                alert("Failed Please try gain")
-            }
-        })
+        //     }
+        //     else {
+        //         alert("Failed Please try gain")
+        //     }
+        // })
     }
 
     render() {

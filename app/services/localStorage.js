@@ -1,8 +1,8 @@
 import { AsyncStorage } from "react-native";
 import { Observable } from "rxjs";
 export default class LocalStorage {
-    static setUser(userKey, userObj) {
-        return AsyncStorage.setItem(userKey,JSON.stringify(userObj));
+    static async setUser(userKey, userObj) {
+        return await AsyncStorage.setItem(userKey,JSON.stringify(userObj));
         //    return new Promise((resolve, reject)=>{
         //     let value =  await AsyncStorage.setItem(userKey, JSON.stringify(userObj));
         //     if (value != undefined) {
@@ -18,12 +18,23 @@ export default class LocalStorage {
     static clearLocalStorage() {
         AsyncStorage.clear()
     }
-
+    static  loginUser(payload){
+        return new Promise((resolve,reject)=>{
+             AsyncStorage.getItem('user').then(arr=>{
+                 var data = JSON.parse(arr);
+                if(data.email === payload.email && data.password === payload.password)
+                {
+                    resolve(data)
+                }
+                reject({message:"INVALID USERNAME AND PASSWORD"})
+            })
+        })
+    }
     static removeUser() {
         AsyncStorage.removeItem('localStorageUser');
     }
 
-    static getUser(userKey) {
-        return JSON.parse(AsyncStorage.getItem(userKey));
+    static async getUser(userKey) {
+        return await AsyncStorage.getItem(userKey);
     }
 }
